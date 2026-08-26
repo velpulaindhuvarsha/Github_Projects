@@ -1,0 +1,62 @@
+.9<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f2ea">
+  <title>Hand / Machine - Rock Paper Scissors</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Hand Machine home"><span class="brand-mark">✦</span><span>HAND / MACHINE</span></a>
+      <div class="status-pill"><span class="status-dot"></span><span id="model-status">MODEL READY</span></div>
+    </header>
+
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">ROUND <span id="round-number">01</span> / OPEN PLAY</p>
+      <h1 id="page-title">Read the hand.<br><em>Beat the machine.</em></h1>
+      <p class="lede">Choose your move. The machine will answer in real time.</p>
+    </section>
+
+    <section class="scoreboard" aria-label="Current score">
+      <div class="score-block"><span class="score-label">YOU</span><strong id="player-score">0</strong></div>
+      <div class="score-divider"><span>VS</span></div>
+      <div class="score-block score-block--machine"><span class="score-label">MACHINE</span><strong id="ai-score">0</strong></div>
+      <div class="streak"><span class="score-label">STREAK</span><strong id="streak-score">0</strong></div>
+      <label class="target-control"><span class="score-label">PLAY TO</span><select id="target-select" aria-label="Choose winning rounds"><option value="3">3</option><option value="5">5</option><option value="7">7</option><option value="9">9</option><option value="11">11</option></select></label>
+    </section>
+
+    <section class="arena" aria-live="polite">
+      <div class="player-panel panel">
+        <div class="panel-heading"><span class="panel-number">01</span><div><p class="panel-kicker">YOUR MOVE</p><h2>Make a choice</h2></div></div>
+        <div class="gesture-stage" id="player-stage"><video id="camera-feed" autoplay muted playsinline aria-label="Live camera preview"></video><span class="gesture-emoji" id="player-gesture">?</span><span class="stage-caption" id="player-caption">Awaiting input</span></div>
+        <div class="camera-controls"><button class="camera-button" id="camera-button" type="button"><img src="assets/icons/camera.svg" alt=""> <span>Use camera</span></button><span id="camera-status">Camera off</span></div>
+        <div class="choice-grid" role="group" aria-label="Choose your move">
+          <button class="choice" data-choice="rock" type="button"><span class="choice-symbol">●</span><span>Rock</span><kbd>R</kbd></button>
+          <button class="choice" data-choice="paper" type="button"><span class="choice-symbol choice-symbol--paper">▤</span><span>Paper</span><kbd>P</kbd></button>
+          <button class="choice" data-choice="scissors" type="button"><span class="choice-symbol choice-symbol--scissors">✂</span><span>Scissors</span><kbd>S</kbd></button>
+        </div>
+      </div>
+
+      <div class="versus" aria-hidden="true"><span></span><b>VS</b><span></span></div>
+
+      <div class="machine-panel panel">
+        <div class="panel-heading"><span class="panel-number">02</span><div><p class="panel-kicker">MACHINE MOVE</p><h2>Processing...</h2></div></div>
+        <div class="gesture-stage gesture-stage--machine" id="ai-stage"><span class="gesture-emoji" id="ai-gesture">◌</span><span class="stage-caption" id="ai-caption">Waiting for your move</span></div>
+        <div class="machine-note"><span class="pulse-icon"></span><span id="ai-note">Neural pattern recognition online</span></div>
+      </div>
+    </section>
+
+    <section class="result-bar" id="result-bar"><span class="result-icon" id="result-icon">↗</span><div><p class="result-kicker">RESULT</p><h2 id="result-text">Your move sets the tone.</h2></div><button class="reset-button" id="reset-button" type="button" title="Reset score">↻ <span>Reset</span></button></section>
+
+    <div class="celebration" id="celebration" hidden role="dialog" aria-modal="true" aria-labelledby="celebration-title"><div class="celebration-burst">✦</div><p class="result-kicker" id="celebration-kicker">ROUND COMPLETE</p><h2 id="celebration-title">You win the round!</h2><p id="celebration-copy">Keep the momentum going.</p><button class="celebration-button" id="continue-button" type="button">Continue <span>→</span></button></div>
+
+    <footer><span>RPS / 2026</span><span class="footer-rule"></span><span>BUILT FOR THE BOLD</span></footer>
+  </main>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
